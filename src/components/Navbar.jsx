@@ -9,7 +9,7 @@ import MicIcon from "../assets/Microphone.svg?react";
 import Sidebar from "./Sidebar";
 import ListItem from "./ListItem";
 
-const Navbar = () => {
+const Navbar = ({SidebarShow,setSidebarShow}) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
   useEffect(() => {
@@ -23,7 +23,6 @@ const Navbar = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-  const [SidebarShow, setSidebarShow] = useState(false);
   const menuData = [
     { type: "item", text: "Google Account" },
     { type: "item", text: "Switch account" },
@@ -123,7 +122,6 @@ const Navbar = () => {
           </div>
         </div>
       </header>
-      <Sidebar />
     </>
   );
 };
