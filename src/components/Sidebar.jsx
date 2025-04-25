@@ -203,7 +203,7 @@ const Sidebar = ({ SidebarShow }) => {
             if (item.type === "item") {
               return (
                 <NavLink
-                  to={`/${item.text.toLowerCase()}`}
+                  to={`/${item.text === "Home" ? "" : item.text.toLowerCase()}`}
                   key={index}
                   className="p-2 cursor-pointer flex items-center gap-5 w-full h-[48px] hover:bg-[#272727] rounded-2xl px-4"
                 >
@@ -233,7 +233,7 @@ const Sidebar = ({ SidebarShow }) => {
         <div className="fixed flex top-0 left-0 w-[70px] h-screen mt-[64px] bg-[#0f0f0f] z-50 flex-col overflow-y-auto">
           {smallSidebarElements.map((item, index) => (
             <NavLink
-              to={`/${item.text.toLowerCase()}`}
+            to={`/${item.text === "Home" ? "" : item.text.toLowerCase()}`}
               key={index}
               className="cursor-pointer flex flex-col items-center justify-center gap-1 w-full h-[74px] hover:bg-[#272727] rounded-2xl "
             >

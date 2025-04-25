@@ -45,7 +45,7 @@ const Navbar = ({SidebarShow,setSidebarShow}) => {
 
   return (
     <>
-      <header className="bg-transparent  justify-between w-full h-16 flex px-3">
+      <header className="bg-[#0f0f0f]  justify-between w-full h-16 flex px-3">
         <div className="leftSection flex items-center gap-5  ">
           <span
             onClick={() => setSidebarShow(!SidebarShow)}

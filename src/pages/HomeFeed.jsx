@@ -1,8 +1,11 @@
 import React from 'react'
+import RelatedVideos from '../components/RelatedVideos'
 
 const HomeFeed = () => {
   return (
-    <div>HomeFeed</div>
+    <div>
+      <RelatedVideos/>
+    </div>
   )
 }
 
