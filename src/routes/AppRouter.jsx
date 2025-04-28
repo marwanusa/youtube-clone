@@ -16,7 +16,7 @@ const router = createBrowserRouter([
         element: <HomeFeed />,
       },
       {
-        path: "playlist",
+        path: "playlists",
         element: <Playlist />,
       },
       {
