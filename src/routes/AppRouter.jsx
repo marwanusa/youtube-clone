@@ -4,6 +4,7 @@ import HomeFeed from "../pages/HomeFeed";
 import Playlist from "../pages/Playlist";
 import VideoDetails from "../pages/VideoDetails";
 import SearchResults from "../pages/SearchResults";
+import ChannelPage from "../pages/ChannelPage";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,20 @@ const router = createBrowserRouter([
       {
         path: "search",
         element: <SearchResults />,
+      },
+      {
+        path: "channel/:channelId",
+        element: <ChannelPage />,
+        loader: async ({ params }) => {
+          const { channelId } = params;
+          if (!channelId) {
+            throw new Response("Bad Request", {
+              statusText: "Bad Request",
+              status: 400,
+            });
+          }
+          return { channelId };
+        },
       },
       {
         path: "video/:prefix",
