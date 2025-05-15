@@ -25,6 +25,20 @@ const router = createBrowserRouter([
         element: <SearchResults />,
       },
       {
+        path: "search/:searchTerm",
+        element: <SearchResults />,
+        loader: async ({ params }) => {
+          const { searchTerm } = params;
+          if (!searchTerm) {
+            throw new Response("Bad Request", {
+              statusText: "Bad Request",
+              status: 400,
+            });
+          }
+          return { searchTerm };
+        },
+      },
+      {
         path: "channel/:channelId",
         element: <ChannelPage />,
         loader: async ({ params }) => {
