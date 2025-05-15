@@ -11,7 +11,7 @@ const RelatedVideos = () => {
   };
   return (
     <div className="grid lg:grid-cols-3 gap-6 md:grid-cols-2">
-      {data.items.map((item) => (
+      {data?.items.map((item) => (
         <div
           key={item.id.videoId}
           className="flex flex-col gap-2  max-w-[400px] rounded-xl "

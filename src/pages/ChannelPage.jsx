@@ -8,6 +8,9 @@ const ChannelPage = () => {
   if (isError) return <div>Error: {error.message}</div>;
   return (
     <div className="flex flex-col gap-5 ml-5 mr-5">
+      <span className="w-full bg-gray-700 rounded-xl h-[180px] flex justify-center items-center text-3xl">
+        Channel Cover
+      </span>
       <div className="flex gap-7 items-center">
         <img
         className="w-50 h-50 rounded-full"
@@ -25,14 +28,15 @@ const ChannelPage = () => {
           </button>
         </div>
       </div>
+      <hr />
       <div className="flex gap-2">
-        <button class="bg-[#272727] hover:bg-[#ffffff6b] text-white font-bold py-1 px-3 rounded">
+        <button className=" cursor-pointer bg-[#272727] hover:bg-[#ffffff6b] text-white font-bold py-1 px-3 rounded">
           Latest
         </button>
-        <button class="bg-[#272727] hover:bg-[#ffffff6b] text-white font-bold py-1 px-3 rounded">
+        <button className=" cursor-pointer bg-[#272727] hover:bg-[#ffffff6b] text-white font-bold py-1 px-3 rounded">
           Popular
         </button>
-        <button class="bg-[#272727] hover:bg-[#ffffff6b] text-white font-bold py-1 px-3 rounded">
+        <button className=" cursor-pointer bg-[#272727] hover:bg-[#ffffff6b] text-white font-bold py-1 px-3 rounded">
           Oldest
         </button>
       </div>
@@ -47,7 +51,7 @@ const ChannelPage = () => {
               src={item.snippet.thumbnails.medium.url}
               alt={item.snippet.title}
             />
-            <h4 className="max-w-[100px] max-h-[48px] overflow-hidden cursor-pointer hover:underline">
+            <h4 className="max-w-[190px] max-h-[48px] overflow-hidden cursor-pointer hover:underline">
               {item.snippet.title}
             </h4>
             <div className="flex gap-2">

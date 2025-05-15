@@ -13,7 +13,7 @@ const useGetChannelVid = (channelId) => {
     queryKey: [`channel/${channelId}/videos`],
     queryFn: () => fetchFromAPI(channelId),
     enabled: !!channelId,
-    staleTime: 1000 * 60 * 3,
+    staleTime: 60 * 60 * 3,
   });
   return query;
 };
