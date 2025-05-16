@@ -29,8 +29,18 @@ const RelatedVideos = () => {
               onClick={() => handleChannelClick(item.snippet.channelId)} 
               
             />
+            <div className="flex flex-col">
             <h4 className="max-w-[300px] max-h-[48px] overflow-hidden cursor-pointer hover:underline">{item.snippet.title}</h4>
+            <p className="text-[#878787] text-sm cursor-pointer hover:underline"  onClick={() => handleChannelClick(item.snippet.channelId)} >
+              {item.snippet.channelTitle}
+            </p>
+            <p className="text-[#878787] text-sm">
+              {item.snippet.publishTime}
+            </p>
+            </div>
+
           </div>
+
         </div>
       ))}
     </div>
