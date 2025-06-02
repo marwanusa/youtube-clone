@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { options } from '../api/api'
 const fetchFromAPI = async () => {
-    const result = await axios.get("https://youtube-v31.p.rapidapi.com/search?relatedToVideoId=7ghhRHRP6t4&part=id%2Csnippet&type=video&maxResults=60", options)
+    const result = await axios.get("https://youtube-v2.p.rapidapi.com/trending/?lang=en&country=us&section=Now", options)
     return result.data;
 }
 const useGetRecomended = () => {

@@ -3,7 +3,7 @@ import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 const fetchFromAPI = async (searchTerm) => {
     const result = await axios.get(
-      `https://youtube-v31.p.rapidapi.com/search?q=${searchTerm}&part=snippet%2Cid&regionCode=US&maxResults=50&order=date`,
+      `https://youtube-v2.p.rapidapi.com/search/?query=${searchTerm}&lang=en&order_by=this_month&country=us`,
       options
     );
     return result.data;
@@ -16,5 +16,4 @@ const useGetSearchRes = (searchTerm) => {
     })
     return query;
 }
-
 export default useGetSearchRes;
