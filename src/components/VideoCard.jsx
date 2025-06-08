@@ -6,6 +6,9 @@ const VideoCard = ({item,isThereAvatar}) => {
     const handleChannelClick = (channelId) => {
         navigate(`/channel/${channelId}`);
       };
+      const handleVideoClick = (videoId) => {
+        navigate(`/video/${videoId}`);
+      };
       const calculateViews = (views) => {
         if (views >= 1000000) {
           return `${(views / 1000000).toFixed(1)}M views`;
@@ -20,7 +23,7 @@ const VideoCard = ({item,isThereAvatar}) => {
     key={`${item.video_id}`}
       className="flex flex-col gap-2  max-w-[400px] rounded-xl "
     >
-        <div className="relative">
+        <div className="relative" onClick={() => handleVideoClick(item.video_id)} >
         <img
       className="w-full rounded-xl cursor-pointer"
         src={item.thumbnails[2].url}

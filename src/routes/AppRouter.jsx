@@ -53,17 +53,17 @@ const router = createBrowserRouter([
         },
       },
       {
-        path: "video/:prefix",
+        path: "video/:videoId",
         element: <VideoDetails />, 
         loader: async ({ params }) => {
-          const { prefix } = params;
-          if (!prefix) {
+          const { videoId } = params;
+          if (!videoId) {
             throw new Response("Bad Request", {
               statusText: "Bad Request",
               status: 400,
             });
           }
-          return { prefix };
+          return { videoId };
         },
       },
       {

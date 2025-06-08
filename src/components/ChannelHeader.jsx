@@ -7,7 +7,7 @@ const ChannelHeader = ({channelId}) => {
   if (isError) return <div>Error loading channel data</div>
   return (
     <div className='flex flex-col gap-3'>
-    <img src={data.banner[3].url} alt="channel banner"/>
+    <img src={data.banner[1].url} alt="channel banner"/>
       <div className="flex gap-7 items-center">
         <img
         className="w-40 h-40 rounded-full"
@@ -20,7 +20,7 @@ const ChannelHeader = ({channelId}) => {
             <p>{data.subscriber_count}</p>
             <p>. 999 videos</p>
           </span>
-          <button class="w-[120px] bg-[#ffffff] hover:bg-[#ebe9e9] text-black font-bold py-2 px-4 rounded-3xl cursor-pointer">
+          <button className="w-[120px] bg-[#ffffff] hover:bg-[#ebe9e9] text-black font-bold py-2 px-4 rounded-3xl cursor-pointer">
             Subscribe
           </button>
         </div>
