@@ -7,7 +7,11 @@ const Searchbar = () => {
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
   const handelSearch = () => {
-    navigate(`/search/${search}`);
+    if(search.length > 0)
+    {
+
+      navigate(`/search/${search}`);
+    }
   };
   return (
     <>

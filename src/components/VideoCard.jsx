@@ -21,7 +21,7 @@ const VideoCard = ({item,isThereAvatar}) => {
   return (
     <div
     key={`${item.video_id}`}
-      className="flex flex-col gap-2  max-w-[400px] rounded-xl "
+      className="flex flex-col gap-2  max-w-[400px] rounded-xl md:m-0 mx-auto"
     >
         <div className="relative" onClick={() => handleVideoClick(item.video_id)} >
         <img
@@ -36,7 +36,7 @@ const VideoCard = ({item,isThereAvatar}) => {
       <div className="flex gap-2">
         {isThereAvatar &&         <img
           className="w-10 h-10 rounded-full cursor-pointer"
-          src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+          src="https://avatar.iran.liara.run/public/5"
           alt="avatar"
           onClick={() => handleChannelClick(item.channel_id)} 
           

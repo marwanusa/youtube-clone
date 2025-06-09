@@ -193,7 +193,7 @@ const Sidebar = ({ SidebarShow }) => {
   return (
     <>
       {SidebarShow ? (
-        <div className="fixed flex top-0 left-0 w-[240px] h-screen mt-[64px] bg-[#0f0f0f] z-50 flex-col overflow-y-auto
+        <div className=" fixed flex top-0 left-0 w-[240px] h-screen mt-[64px] bg-[#0f0f0f] z-50 flex-col overflow-y-auto
   [&::-webkit-scrollbar]:w-1
   [&::-webkit-scrollbar-thumb]:rounded-full
   hover:[&::-webkit-scrollbar-thumb]:bg-[#9f9f9f]
@@ -230,7 +230,7 @@ const Sidebar = ({ SidebarShow }) => {
           })}
         </div>
       ) : (
-        <div className="fixed flex top-0 left-0 w-[70px] h-screen mt-[64px] bg-[#0f0f0f] z-50 flex-col overflow-y-auto">
+        <div className="hidden fixed md:flex top-0 left-0 w-[70px] h-screen mt-[64px] bg-[#0f0f0f] z-50 flex-col overflow-y-auto">
           {smallSidebarElements.map((item, index) => (
             <NavLink
             to={`/${item.text === "Home" ? "" : item.text.toLowerCase()}`}

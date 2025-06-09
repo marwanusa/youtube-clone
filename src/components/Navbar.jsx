@@ -6,11 +6,23 @@ import NotificationIcon from "../assets/Notification.svg?react";
 import { useEffect, useRef, useState } from "react";
 import SearchIcon from "../assets/Search.svg?react";
 import MicIcon from "../assets/Microphone.svg?react";
-import Sidebar from "./Sidebar";
 import ListItem from "./ListItem";
+import { useNavigate } from "react-router-dom";
 
-const Navbar = ({SidebarShow,setSidebarShow}) => {
+const Navbar = ({ SidebarShow, setSidebarShow }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isMobileSearch, setIsMobileSearch] = useState(false);
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
+
+  const handelSearch = () => {
+    if(search.length > 0)
+      {
+
+        navigate(`/search/${search}`);
+      }
+  };
+
   const menuRef = useRef(null);
   useEffect(() => {
     function handleClickOutside(event) {
@@ -49,37 +61,78 @@ const Navbar = ({SidebarShow,setSidebarShow}) => {
         <div className="leftSection flex items-center gap-5  ">
           <span
             onClick={() => setSidebarShow(!SidebarShow)}
-            className="hover:bg-[#222222] cursor-pointer p-2 rounded-3xl  "
+            className="hover:bg-[#222222] cursor-pointer p-2 rounded-3xl hidden md:block "
           >
             <SideMenuIcon />
           </span>
-          <a href="/">
-            <YoutubeLogo />
-          </a>
-          <span className="-m-[18px] text-[10px] font-bold pb-6 text-[#8a8686]">
-            EG
-          </span>
+          {!isMobileSearch ? (
+            <a href="/">
+              <YoutubeLogo />
+            </a>
+          ) : (
+            <>
+              <button
+                onClick={() => setIsMobileSearch(false)}
+                className="md:hidden flex items-center justify-center p-2"
+              >
+                <svg
+                  className="w-6 h-6 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M15 19l-7-7 7-7"
+                  />
+                </svg>
+              </button>
+              <input
+                type="text"
+                className="bg-[#202020] w-[250px] rounded-2xl border-none outline-none px-2 py-1"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </>
+          )}
+          {!isMobileSearch && (
+            <span className="-m-[18px] text-[10px] font-bold pb-6 text-[#8a8686]">
+              EG
+            </span>
+          )}
         </div>
         <div className="middleSection md:basis-[48%]   ">
           <Searchbar />
         </div>
         <div className="rightSection flex justify-center items-center  gap-3">
           <div className="flex md:hidden justify-center items-center h-full">
-            <button className="cursor-pointer h-[35px] w-[35px] p-1  mx-2   text-white rounded-2xl flex items-center justify-center hover:bg-[#313131]">
+            <button
+              onClick={() => {
+                if (isMobileSearch) {
+                  handelSearch();
+                } else {
+                  setIsMobileSearch(true); 
+                }
+              }}
+              className="cursor-pointer h-[35px] w-[35px] p-1 mx-2 text-white rounded-2xl flex items-center justify-center md:hover:bg-[#313131]"
+            >
               <SearchIcon className="h-[35px] w-[35px]" />
             </button>
-            <button className="cursor-pointer h-[35px] w-[35px] p-1  mx-2   text-white rounded-2xl flex items-center justify-center hover:bg-[#313131]">
+
+            <button className="md:flex hidden cursor-pointer h-[35px] w-[35px] p-1  mx-2   text-white rounded-2xl  items-center justify-center hover:bg-[#313131]">
               <MicIcon />
             </button>
           </div>
-          <div className="flex justify-center items-center gap-2 bg-[#222222] p-2 rounded-3xl px-3 cursor-pointer hover:bg-[#313131]">
+          <div className="hidden md:flex justify-center items-center gap-2 bg-[#222222] p-2 rounded-3xl px-3 cursor-pointer hover:bg-[#313131]">
             <PlusIcon />
             <p className="font-medium text-white ">Create</p>
           </div>
-          <button className="cursor-pointer h-[35px] p-1  mx-2 w-[35x] bg-[#222222] text-white rounded-2xl flex items-center justify-center hover:bg-[#313131]">
+          <button className="hidden cursor-pointer h-[35px] p-1  mx-2 w-[35x] bg-[#222222] text-white rounded-2xl md:flex items-center justify-center hover:bg-[#313131]">
             <NotificationIcon />
           </button>
-          <div className="relative">
+          <div className="relative md:block hidden">
             <img
               className="cursor-pointer w-10 h-10 rounded-full"
               onClick={() => setMenuOpen(!menuOpen)}

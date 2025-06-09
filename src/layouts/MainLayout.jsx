@@ -13,7 +13,7 @@ const MainLayout = () => {
       <Sidebar SidebarShow={SidebarShow}/>
       <main
         className={`transition-all duration-300 pt-19 ${
-          SidebarShow ? 'ml-[260px]' : 'ml-[100px]'
+          SidebarShow ? 'ml-[260px]' : ' md:ml-[100px]'
         } bg-[#0f0f0f] min-h-screen`}
       >
         <Outlet/>

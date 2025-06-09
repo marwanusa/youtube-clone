@@ -4,6 +4,8 @@ import useInfiniteChannelVideos from "../hooks/useInfiniteChannelVideos";
 import VideoCard from "../components/VideoCard.jsx";
 import { useRef, useEffect } from "react";
 import Spinner from "../components/feedback/Spinner.jsx";
+import VideoCardSkeleton from "../components/feedback/skeletons/VideoCardSkeleton.jsx";
+import ChannelHeaderSkeleton from "../components/feedback/skeletons/ChannelHeaderSkeleton.jsx";
 
 const ChannelPage = () => {
   const { channelId } = useLoaderData();
@@ -40,7 +42,25 @@ const ChannelPage = () => {
     };
   }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
 
-  if (isLoading) return <div className="text-white">Loading...</div>;
+  if (isLoading) {
+    return (
+      <div className="flex flex-col gap-5 ml-5 mr-5">
+        <ChannelHeaderSkeleton />
+        <hr />
+        <div className="flex gap-2">
+          <div className="w-20 h-8 bg-[#333] rounded animate-pulse" />
+          <div className="w-20 h-8 bg-[#333] rounded animate-pulse" />
+          <div className="w-20 h-8 bg-[#333] rounded animate-pulse" />
+        </div>
+        <div className="grid lg:grid-cols-4 gap-6 md:grid-cols-3">
+          {[...Array(8)].map((_, i) => (
+            <VideoCardSkeleton key={i} />
+          ))}
+        </div>
+      </div>
+    );
+  }
+  
   if (isError) return <div className="text-white">Error fetching videos</div>;
 
   return (
@@ -61,7 +81,7 @@ const ChannelPage = () => {
 
       <div className="grid lg:grid-cols-4 gap-6 md:grid-cols-3">
         {data.pages.map((page, i) =>
-          page.videos.map((video, idx) => (
+          page.videos?.map((video, idx) => (
             <VideoCard key={`${i}-${idx}`} item={video} isThereAvatar={false} />
           ))
         )}

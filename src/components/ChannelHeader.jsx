@@ -1,9 +1,16 @@
 import React from 'react'
 import useGetChannelDet from '../hooks/useGetChannelDet';
+import ChannelHeaderSkeleton from './feedback/skeletons/ChannelHeaderSkeleton';
 
 const ChannelHeader = ({channelId}) => {
   const { data, isLoading, isError } = useGetChannelDet(channelId);
-  if (isLoading) return <div>Loading...</div>
+  if (isLoading) {
+    return (
+      <div className="flex flex-col gap-5 ml-5 mr-5">
+        <ChannelHeaderSkeleton />
+      </div>
+    );
+  }
   if (isError) return <div>Error loading channel data</div>
   return (
     <div className='flex flex-col gap-3'>
