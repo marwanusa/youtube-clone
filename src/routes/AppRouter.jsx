@@ -1,28 +1,27 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import HomeFeed from "../pages/HomeFeed";
-import Playlist from "../pages/Playlist";
 import VideoDetails from "../pages/VideoDetails";
 import SearchResults from "../pages/SearchResults";
 import ChannelPage from "../pages/ChannelPage";
+import Lottie from "lottie-react";
+import Error404 from "../lotties/404 error.json";
+import UnexpectedError from "../lotties/error.json";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
-    errorElement: <div>Error</div>,
+    errorElement: (
+<div className="flex flex-col  h-[100vh] justify-center items-center">
+<Lottie animationData={UnexpectedError} loop={true} />
+<h1 className="text-3xl font-bold text-center">Oops! Something went wrong.</h1>
+      </div>
+    ),
     children: [
       {
         index: true,
         element: <HomeFeed />,
-      },
-      {
-        path: "playlists",
-        element: <Playlist />,
-      },
-      {
-        path: "search",
-        element: <SearchResults />,
       },
       {
         path: "search/:searchTerm",
@@ -54,7 +53,7 @@ const router = createBrowserRouter([
       },
       {
         path: "video/:videoId",
-        element: <VideoDetails />, 
+        element: <VideoDetails />,
         loader: async ({ params }) => {
           const { videoId } = params;
           if (!videoId) {
@@ -68,7 +67,11 @@ const router = createBrowserRouter([
       },
       {
         path: "*",
-        element: <div>404 - Page Not Found</div>, 
+        element: (
+          <div className="flex h-[full] justify-center items-center">
+            <Lottie animationData={Error404} loop={true} />
+          </div>
+        ),
       },
     ],
   },

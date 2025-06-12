@@ -54,20 +54,21 @@ function VideoDetails() {
           <BeatLoader color="#ff0000" />{" "}
         </div>
       ) : (
-        <div className="flex flex-row gap-6  w-full px-4 py-6">
+        <div className="flex flex-col md:flex-row gap-6  w-full px-4 py-6">
           {/* Left: Video, Description, Comments */}
           <div className="flex flex-col basis-[70%] max-w-[900px]">
             {/* Video Player */}
-            <div className="w-full aspect-video bg-black rounded-xl overflow-hidden mb-4">
+            <div className="w-full aspect-video bg-black rounded-xl overflow-hidden mb-4 ">
               <iframe
                 src={`https://www.youtube.com/embed/${videoId}`}
-                className="w-full h-full"
+                className="w-full h-full "
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 title="YouTube Video Player"
               />
             </div>
             {/* Video Title */}
+            
             <h1 className="text-xl font-bold text-white mb-2">
               {statsData.title}
             </h1>
@@ -87,10 +88,10 @@ function VideoDetails() {
             {/* Comments */}
             <div className="rounded-lg p-2">
               <h2 className="text-lg font-semibold text-white mb-3">
-                {commentsData.total_number_of_comments} Comments
+              {commentsData?.total_number_of_comments ?? 0} Comments
               </h2>
               <div className="flex flex-col gap-3">
-                {commentsData.comments.map((comment, idx) => (
+                {commentsData?.comments?.map((comment, idx) => (
                   <div
                     key={idx}
                     className="flex gap-2 items-center  rounded-md py-3"
@@ -130,7 +131,7 @@ function VideoDetails() {
             <h2 className="text-lg font-semibold text-white mb-2">
               Recommended
             </h2>
-            {recommendedData.videos.map((rec, idx) => (
+            {recommendedData?.videos?.map((rec, idx) => (
               <div
                 key={idx}
                 className="flex gap-3 bg-[#181818] rounded-lg p-2 hover:bg-[#232323] cursor-pointer"
