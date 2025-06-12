@@ -25,7 +25,7 @@ const VideoCard = ({item,isThereAvatar}) => {
       <div className="flex gap-2">
         {isThereAvatar &&         <img
           className="w-10 h-10 rounded-full cursor-pointer"
-          src="https://avatar.iran.liara.run/public/5"
+          src="https://i.pravatar.cc/30"
           alt="avatar"
           onClick={() => handleChannelClick(item.channel_id,navigate)} 
           
