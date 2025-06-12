@@ -3,16 +3,12 @@ import SearchIcon from "../assets/Search.svg?react"
 import MicIcon from "../assets/Microphone.svg?react"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import handelSearch from "../utils/handelSearch";
+
 const Searchbar = () => {
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
-  const handelSearch = () => {
-    if(search.length > 0)
-    {
 
-      navigate(`/search/${search}`);
-    }
-  };
   return (
     <>
     <div className="h-full  items-center rounded-2xl hidden md:flex">
@@ -29,7 +25,7 @@ const Searchbar = () => {
           onChange={(e) => setSearch(e.target.value)}
         />
       </div>
-      <button className="cursor-pointer h-[65%] w-[8%] bg-[#222222] text-white rounded-r-2xl flex items-center justify-center" onClick={()=>{handelSearch()}}>
+      <button className="cursor-pointer h-[65%] w-[8%] bg-[#222222] text-white rounded-r-2xl flex items-center justify-center" onClick={()=>{handelSearch(search,navigate)}}>
         <SearchIcon className="w-[25px] h-[25px]"/>
       </button>
       <button className="cursor-pointer h-[35px] p-1  mx-2 w-[35x] bg-[#222222] text-white rounded-2xl flex items-center justify-center hover:bg-[#313131]">

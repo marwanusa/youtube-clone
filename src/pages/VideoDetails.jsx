@@ -4,27 +4,16 @@ import useGetVideoDet from "../hooks/useGetVideoDet";
 import useGetVideoCom from "../hooks/useGetVideoCom";
 import useGetVideoRecom from "../hooks/useGetVideoRecom";
 import { BeatLoader } from "react-spinners";
+import calculateViews from "../utils/calculateViews";
+import handleChannelClick from "../utils/handleChannelClick";
+import handleVideoClick from "../utils/handleVideoClick";
 
 function VideoDetails() {
   const { videoId } = useLoaderData();
   const navigate = useNavigate();
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const handleChannelClick = (channelId) => {
-    navigate(`/channel/${channelId}`);
-  };
-  const handleVideoClick = (videoId) => {
-    navigate(`/video/${videoId}`);
-  };
-  const calculateViews = (views) => {
-    if (views >= 1000000) {
-      return `${(views / 1000000).toFixed(1)}M views`;
-    } else if (views >= 1000) {
-      return `${(views / 1000).toFixed(1)}K views`;
-    } else {
-      return `${views} views`;
-    }
-  };
+
   const {
     data: statsData,
     isLoading: isStatsLoading,
@@ -54,7 +43,7 @@ function VideoDetails() {
           <BeatLoader color="#ff0000" />{" "}
         </div>
       ) : (
-        <div className="flex flex-col md:flex-row gap-6  w-full px-4 py-6">
+        <div className="flex flex-col lg:flex-row gap-6  w-full px-4 py-6">
           {/* Left: Video, Description, Comments */}
           <div className="flex flex-col basis-[70%] max-w-[900px]">
             {/* Video Player */}
@@ -101,7 +90,7 @@ function VideoDetails() {
                       alt={comment.author_name}
                       className="w-10 h-10 rounded-full cursor-pointer"
                       onClick={() =>
-                        handleChannelClick(comment.author_channel_id)
+                        handleChannelClick(comment.author_channel_id,navigate)
                       }
                     />
                     <div className="flex flex-col">
@@ -109,7 +98,8 @@ function VideoDetails() {
                         <span
                           className="font-bold text-sm text-blue-300 cursor-pointer"
                           onClick={() =>
-                            handleChannelClick(comment.author_channel_id)
+                            handleChannelClick(comment.author_channel_id,navigate)
+
                           }
                         >
                           {comment.author_name}
@@ -135,7 +125,7 @@ function VideoDetails() {
               <div
                 key={idx}
                 className="flex gap-3 bg-[#181818] rounded-lg p-2 hover:bg-[#232323] cursor-pointer"
-                onClick={() => handleVideoClick(rec.video_id)}
+                onClick={() => handleVideoClick(rec.video_id,navigate)}
               >
                 <img
                   src={rec.thumbnails[0].url}

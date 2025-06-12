@@ -3,6 +3,9 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import useGetSearchRes from "../hooks/useGetSearchRes";
 import { BeatLoader } from "react-spinners";
 import Spinner from "../components/feedback/Spinner";
+import calculateViews from "../utils/calculateViews";
+import handleChannelClick from "../utils/handleChannelClick";
+import handleVideoClick from "../utils/handleVideoClick";
 
 function SearchResults() {
   const { searchTerm } = useLoaderData();
@@ -16,21 +19,7 @@ function SearchResults() {
     error,
   } = useGetSearchRes(searchTerm);
   const navigate = useNavigate();
-  const handleChannelClick = (channelId) => {
-      navigate(`/channel/${channelId}`);
-    };
-    const handleVideoClick = (videoId) => {
-      navigate(`/video/${videoId}`);
-    };
-  const calculateViews = (views) => {
-    if (views >= 1000000) {
-      return `${(views / 1000000).toFixed(1)}M views`;
-    } else if (views >= 1000) {
-      return `${(views / 1000).toFixed(1)}K views`;
-    } else {
-      return `${views} views`;
-    }
-  };
+
 
   const observerRef = useRef();
   // Infinite scroll
@@ -69,7 +58,7 @@ function SearchResults() {
           <React.Fragment key={pageIndex}>
             {page.videos.map((item) => (
               <div key={item.video_id} className="flex flex-col mx-auto md:mx-0 md:flex-row gap-3" >
-                <div className="relative w-[410px] h-[250px]" onClick={() => handleVideoClick(item.video_id)} >
+                <div className="relative w-[410px] h-[250px]" onClick={() => handleVideoClick(item.video_id,navigate)} >
                   <img
                     src={item.thumbnails?.[1]?.url || item.thumbnails?.[0]?.url}
                     alt=""
@@ -81,7 +70,7 @@ function SearchResults() {
                   </span>
                 </div>
                 <div className="ml-2 md:ml-0 flex flex-col gap-2 w-[25rem] md:w-[30rem]  overflow-hidden ">
-                  <span className="text-[18px] cursor-pointer" onClick={() => handleVideoClick(item.video_id)}>
+                  <span className="text-[18px] cursor-pointer" onClick={() => handleVideoClick(item.video_id,navigate)}>
                     {item.title}
                   </span>
                   <div >
@@ -89,10 +78,10 @@ function SearchResults() {
                       src="https://avatar.iran.liara.run/public/5"
                       alt=""
                       className="w-7 h-7 rounded-full inline mr-2 cursor-pointer"
-                      onClick={() => handleChannelClick(item.channel_id)}
+                      onClick={() => handleChannelClick(item.channel_id,navigate)}
                     />
 
-                    <span className="text-[#878787] text-sm cursor-pointer" onClick={() => handleChannelClick(item.channel_id)}>
+                    <span className="text-[#878787] text-sm cursor-pointer" onClick={() => handleChannelClick(item.channel_id,navigate)}>
                       {item.author}
                     </span>
                     <span className="text-[#878787] text-sm block mt-2">

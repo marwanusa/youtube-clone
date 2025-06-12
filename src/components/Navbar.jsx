@@ -8,20 +8,13 @@ import SearchIcon from "../assets/Search.svg?react";
 import MicIcon from "../assets/Microphone.svg?react";
 import ListItem from "./ListItem";
 import { useNavigate } from "react-router-dom";
-
+import handelSearch from "../utils/handelSearch";
 const Navbar = ({ SidebarShow, setSidebarShow }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isMobileSearch, setIsMobileSearch] = useState(false);
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
 
-  const handelSearch = () => {
-    if(search.length > 0)
-      {
-
-        navigate(`/search/${search}`);
-      }
-  };
 
   const menuRef = useRef(null);
   useEffect(() => {
@@ -91,7 +84,7 @@ const Navbar = ({ SidebarShow, setSidebarShow }) => {
               </button>
               <input
                 type="text"
-                className="bg-[#202020] w-[250px] rounded-2xl border-none outline-none px-2 py-1"
+                className="bg-[#202020] w-[250px] rounded-2xl border-none outline-none px-2 py-1 md:hidden"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
@@ -111,7 +104,7 @@ const Navbar = ({ SidebarShow, setSidebarShow }) => {
             <button
               onClick={() => {
                 if (isMobileSearch) {
-                  handelSearch();
+                  handelSearch(search,navigate);
                 } else {
                   setIsMobileSearch(true); 
                 }
