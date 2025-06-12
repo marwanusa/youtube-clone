@@ -44,10 +44,10 @@ src/
 ├── layouts/                # Layout components
 ├── lotties/                # Lottie animation JSONs
 ├── pages/                  # Main page views
-│   ├── HomeFeed.jsx        # 📌 GIF here
-│   ├── ChannelPage.jsx     # 📌 GIF here
-│   ├── VideoDetails.jsx    # 📌 GIF here
-│   └── SearchResults.jsx   # 📌 GIF here
+│   ├── HomeFeed.jsx        
+│   ├── ChannelPage.jsx     
+│   ├── VideoDetails.jsx    
+│   └── SearchResults.jsx   
 ├── routes/                 # App routing
 │   └── AppRouter.jsx
 ├── utils/                  # Utility functions
